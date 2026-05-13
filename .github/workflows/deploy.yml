@@ -1,20 +1,24 @@
 name: Deploy to GitHub Pages
 
+# Trigger: Bei Push auf main oder manuell auslösbar
 on:
   push:
     branches: [main]
   workflow_dispatch:
 
+# Berechtigungen für GitHub Actions
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Nur ein Deploy gleichzeitig erlaubt
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
+  # Schritt 1: Website bauen
   build:
     runs-on: ubuntu-latest
     steps:
@@ -38,6 +42,7 @@ jobs:
         with:
           path: ./dist
 
+  # Schritt 2: Zu GitHub Pages deployen
   deploy:
     needs: build
     runs-on: ubuntu-latest
