@@ -1,8 +1,8 @@
 ---
-title: start
-description: Eine hübsche Zusammenfassung über die Cloudland
-tableOfContents: true
+title: CloudLand
+description: A summary of the CloudLand Conference
 ---
 
-## Voraussetzungen
-CloudLand ist das jährliche Cloud Native Festival der Deutschsprachigen Cloud Native Community (DCNC). Es findet in einem Freizeitpark wie dem Heide Park Soltau statt und bietet über mehrere Tage interaktive Sessions, Workshops, Keynotes und Networking zu Themen wie DevOps, AI/ML, Security, Public Cloud und Platform Engineering. Die Veranstaltung kombiniert Fachwissen mit Unterhaltung, etwa Gaming Nights und Park-Zugang, und zieht Experten von AWS, Azure und Google Cloud an.
+CloudLand is the annual Cloud Native Festival of the German-speaking Cloud Native Community (DCNC).
+It takes place in an amusement park and offers interactive sessions, workshops, and keynotes
+on topics such as DevOps, AI/ML, Security, and Platform Engineering.

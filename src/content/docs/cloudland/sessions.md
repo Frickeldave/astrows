@@ -3,14 +3,14 @@ title: sessions
 description: Alle sessions der cloudland
 ---
 
-## Montag
+## Monday
 session 1
 session 2
 
-## Dienstag
+## Tuesday
 session 3
 session 4
 
-## Mittwoch
+## Wednesday
 session 5
 session 6

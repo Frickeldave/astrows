@@ -7,11 +7,30 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "eslint ./src --fix",
+    "lint:check": "eslint ./src",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
     "astro": "^6.2.2",
     "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.59.3",
+    "@typescript-eslint/parser": "^8.59.3",
+    "astro-eslint-parser": "^1.4.0",
+    "eslint": "^10.3.0",
+    "eslint-plugin-astro": "^1.7.0",
+    "eslint-plugin-unused-imports": "^4.4.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.4",
+    "typescript-eslint": "^8.59.3"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,astro}": ["eslint --fix", "eslint"]
   }
 }
