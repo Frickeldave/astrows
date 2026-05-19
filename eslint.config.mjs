@@ -57,6 +57,6 @@ export default [
 
   // Ignorierte Verzeichnisse
   {
-    ignores: ["dist/", "node_modules/", ".astro/", "src/lib/beispiel.ts"],
+    ignores: ["dist/", "node_modules/", ".astro/"],
   },
 ];

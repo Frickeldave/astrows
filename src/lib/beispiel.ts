@@ -3,5 +3,3 @@ const greet = (name: string, greeting: string) => {
 };
 
 export const message = greet("Welt", "Hallo");
-
-kjhkjhkj;
