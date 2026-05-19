@@ -1,10 +1,7 @@
-// src/lib/beispiel.ts
-const unusedVar = "ich werde nie benutzt";
+const greet = (name: string, greeting: string) => {
+  return greeting + " " + name;
+};
 
-const dynamicData: any = JSON.parse(rawInput);
+export const message = greet("Welt", "Hallo");
 
-function ohneReturnType(name) {
-  return "Hallo " + name;
-}
-
-export const result: any = ohneReturnType("Welt");
+kjhkjhkj;

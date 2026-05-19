@@ -10,7 +10,9 @@
     "astro": "astro",
     "lint": "eslint ./src --fix",
     "lint:check": "eslint ./src",
-    "prepare": "husky"
+    "prepare": "husky",
+    "format": "prettier --write ./src --log-level silent",
+    "format:check": "prettier --check ./src --log-level silent"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",
@@ -28,9 +30,19 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.4",
+    "prettier": "^3.8.3",
+    "prettier-plugin-astro": "^0.14.1",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "typescript-eslint": "^8.59.3"
   },
   "lint-staged": {
-    "*.{ts,tsx,astro}": ["eslint --fix", "eslint"]
+    "*.{ts,tsx,astro}": [
+      "eslint --fix --no-warn-ignored",
+      "prettier --write"
+    ],
+    "*.{md,mdx,css,scss}": [
+      "prettier --write"
+    ],
+    "!package.json": []
   }
 }
