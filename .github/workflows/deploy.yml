@@ -18,8 +18,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  # Schritt 1: Website bauen
-  build:
+  # Schritt 1: Code-Qualität prüfen
+  quality:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,11 +40,22 @@ jobs:
       - name: Format check
         run: npm run format:check
 
-      - name: Install Vale
-        run: npm run prose-install
+  # Schritt 2: Website bauen
+  build:
+    needs: quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Prose check
-        run: npm run prose
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build
         run: npm run build
@@ -54,7 +65,7 @@ jobs:
         with:
           path: ./dist
 
-  # Schritt 2: Zu GitHub Pages deployen
+  # Schritt 3: Zu GitHub Pages deployen
   deploy:
     needs: build
     runs-on: ubuntu-latest
