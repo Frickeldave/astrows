@@ -40,6 +40,12 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Install Vale
+        run: npm run install-vale
+
+      - name: Prose check
+        run: npm run prose
+
       - name: Build
         run: npm run build
 

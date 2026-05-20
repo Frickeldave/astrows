@@ -12,7 +12,9 @@
     "lint:check": "eslint ./src",
     "prepare": "husky",
     "format": "prettier --write ./src --log-level silent",
-    "format:check": "prettier --check ./src --log-level silent"
+    "format:check": "prettier --check ./src --log-level silent",
+    "prose-install": "node scripts/prose-install.mjs",
+    "prose": "node scripts/prose-check.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.39.2",

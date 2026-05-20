@@ -1,0 +1,10 @@
+# .vale/styles/Base/Terminology.yml
+extends: substitution
+message: "Verwende '%s' statt '%s'."
+level: warning
+ignorecase: true
+swap:
+  "Adesso": "adesso"
+  "adeso": "adesso"
+  "addesso": "adesso"
+  "ADESSO": "adesso"

@@ -19,3 +19,10 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
+
+# Vale binary und Styleguides
+.vale/vale
+.vale/vale.exe
+.vale/styles/Microsoft/
+.vale/styles/write-good/
+.vale/dictionaries/
