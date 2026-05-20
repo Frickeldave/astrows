@@ -41,7 +41,7 @@ jobs:
         run: npm run format:check
 
       - name: Install Vale
-        run: npm run install-vale
+        run: npm run prose-install
 
       - name: Prose check
         run: npm run prose
