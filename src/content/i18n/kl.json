@@ -1,0 +1,18 @@
+{
+  "skipLink.label": "Duj legh",
+  "search.label": "Qapla'",
+  "search.ctrlKey": "Strg",
+  "search.cancelLabel": "Soj",
+  "themeSelect.dark": "QaQ",
+  "themeSelect.light": "Hoch",
+  "themeSelect.auto": "Soj",
+  "languageSelect.accessibleLabel": "puS jol",
+  "page.editLink": "GitHub Dajatlh",
+  "page.lastUpdated": "Heghlu'meH: ",
+  "prev.label": "Qo'",
+  "next.label": "Qap",
+  "sidebarNav.accessibleLabel": "Duj Dajatlh",
+  "404.text": "Duj ghobe'.\nURL Dajatlh je SIm Duj lo'.",
+  "notFound.text": "Duj ghobe'",
+  "notFound.link": "Soj Duj"
+}

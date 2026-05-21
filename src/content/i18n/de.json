@@ -1,0 +1,18 @@
+{
+  "skipLink.label": "Zum Inhalt springen",
+  "search.label": "Suchen",
+  "search.ctrlKey": "Strg",
+  "search.cancelLabel": "Abbrechen",
+  "themeSelect.dark": "Dunkel",
+  "themeSelect.light": "Hell",
+  "themeSelect.auto": "Automatisch",
+  "languageSelect.accessibleLabel": "Sprache auswählen",
+  "page.editLink": "Seite bearbeiten auf GitHub",
+  "page.lastUpdated": "Zuletzt aktualisiert:",
+  "prev.label": "Zurück",
+  "next.label": "Weiter",
+  "sidebarNav.accessibleLabel": "Hauptnavigation",
+  "404.text": "Seite nicht gefunden.\nBitte überprüfe die URL oder nutze die Suchleiste.",
+  "notFound.text": "Seite nicht gefunden",
+  "notFound.link": "Zur Startseite"
+}
