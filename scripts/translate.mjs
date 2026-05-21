@@ -43,22 +43,7 @@ if (!LLM_API_URL || !LLM_MODEL) {
   process.exit(1);
 }
 
-// CLI-Argumente verarbeiten (VOR der Sprachauswahl)
-const args = process.argv.slice(2);
-
-// Sprache aus CLI-Argumenten parsen (--lang=de oder --lang=kl)
-// Dies überschreibt die .env Einstellung
-let cliLang = args.find((arg) => arg.startsWith("--lang="));
-if (cliLang) {
-  process.env.TARGET_LANG = cliLang.split("=")[1];
-  // Argument entfernen, damit die restliche Logik funktioniert
-  args.splice(args.indexOf(cliLang), 1);
-}
-
-// Jetzt TARGET_LANG aus Environment oder .env laden (CLI hat Vorrang)
-const TARGET_LANG = process.env.TARGET_LANG || config.TARGET_LANG || "de";
-
-// Unterstützte Sprachen
+// Unterstützte Sprachen (muss VOR dem CLI-Parsing definiert sein)
 const SUPPORTED_LANGS = {
   de: {
     name: "Deutsch",
@@ -83,6 +68,26 @@ Verwende authentische Klingonisch-Übersetzungen wo möglich.`,
   },
 };
 
+// CLI-Argumente verarbeiten (VOR der Sprachauswahl)
+const args = process.argv.slice(2);
+
+// Sprache aus CLI-Argumenten parsen
+// Unterstützte Formate:
+//   --lang=kl  (npm: npm run translate datei -- --lang=kl)
+//   kl         (direkt: node script.mjs datei kl)
+let cliLang = args.find((arg) => arg.startsWith("--lang="));
+if (cliLang) {
+  process.env.TARGET_LANG = cliLang.split("=")[1];
+  args.splice(args.indexOf(cliLang), 1);
+} else if (args.length >= 2 && SUPPORTED_LANGS[args[1]?.toLowerCase()]) {
+  // Zweites Argument ist direkt ein Sprachcode (z.B. "kl")
+  process.env.TARGET_LANG = args[1];
+  args.splice(1, 1);
+}
+
+// Jetzt TARGET_LANG aus Environment oder .env laden (CLI hat Vorrang)
+const TARGET_LANG = process.env.TARGET_LANG || config.TARGET_LANG || "de";
+
 // Hilfsfunktion zum Aufruf des LLM
 async function translateWithLLM(text, targetLangInfo) {
   const systemPrompt = targetLangInfo.prompt;
@@ -100,7 +105,7 @@ async function translateWithLLM(text, targetLangInfo) {
           { role: "system", content: systemPrompt },
           { role: "user", content: text },
         ],
-        temperature: 0.3, // Niedrigere Temperatur für konsistentere Übersetzungen
+        temperature: 0.3,
         max_tokens: 8000,
       }),
     });
@@ -111,7 +116,21 @@ async function translateWithLLM(text, targetLangInfo) {
     }
 
     const data = await response.json();
-    return data.choices[0].message.content.trim();
+
+    // Prüfen ob die Antwort gültig ist
+    if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+      throw new Error(`Ungültige API-Antwort: ${JSON.stringify(data)}`);
+    }
+
+    // Unterstützung für reasoning_content als Fallback (manche Modelle nutzen das statt content)
+    const message = data.choices[0].message;
+    const content = message.content || message.reasoning_content;
+
+    if (!content) {
+      throw new Error(`Leere Antwort vom Modell (Model: ${LLM_MODEL})`);
+    }
+
+    return content.trim();
   } catch (error) {
     throw new Error(`Fehler beim LLM-Aufruf: ${error.message}`);
   }
